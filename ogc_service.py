@@ -397,14 +397,14 @@ class OGCService:
             )
 
             response = requests.post(url, headers={'host': hostname},
-                                     data=params, stream=stream)
+                                     data=params, stream=stream, timeout=120)
         else:
             # log forward URL and params
             self.logger.info("Forward GET request to %s?%s" %
                              (url, urlencode(params)))
 
             response = requests.get(url, headers={'host': hostname},
-                                    params=params, stream=stream)
+                                    params=params, stream=stream, timeout=120)
 
         if response.status_code != requests.codes.ok:
             # handle internal server error
